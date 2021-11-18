@@ -13,7 +13,13 @@ namespace triangleSolvertests
 	TEST_CLASS(triangleSolvertests)
 	{
 	public:
-		
+		TEST_METHOD(analyzeTriangle_WrongInput)//checks if a numbers that dont create a triangle are given
+		{
+			char* result;
+			result = analyzeTriangle(1, 2, 3);
+
+			Assert::AreEqual("Not a triangle.", result);
+		}
 		TEST_METHOD(analyzeTriangle_NegativeInput)//checks if a single negative number is given
 		{
 			char* result;
