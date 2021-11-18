@@ -1,4 +1,6 @@
+#define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
+#include <string.h>
 #include <stdbool.h>
 
 #include "main.h"
@@ -20,9 +22,18 @@ int main() {
 			int triangleSides[3] = { 0, 0, 0 };
 			int* triangleSidesPtr = getTriangleSides(triangleSides);
 			//printf_s("! %d\n", triangleSidesPtr[0]);
-			char* result = analyzeTriangle(triangleSidesPtr[0], triangleSidesPtr[1], triangleSidesPtr[2]);
+			char result[100];
+			strcpy(result, analyzeTriangle(triangleSidesPtr[0], triangleSidesPtr[1], triangleSidesPtr[2]));		//strcpy
 			printf_s("%s\n", result);
 			break;
+		/*case 2:
+			printf_s("Rectangle selected. \n");
+			int rectangleSides[4][2];
+			int* rectangleSidesPtr = getRectangleSides(rectangleSides);
+			char result[100];
+			strcpy(result, analyzeRectangle(rectangleSidesPtr[0], rectangleSidesPtr[1], rectangleSidesPtr[2], rectangleSidesPtr[3]));
+			printf_s("%s\n");
+			break;*/
 		case 0:
 			continueProgram = false;
 			break;
@@ -44,6 +55,7 @@ void printWelcome() {
 
 int printShapeMenu() {
 	printf_s("1. Triangle\n");
+	printf_s("2. Rectangle\n");
 	printf_s("0. Exit\n");
 
 	int shapeChoice;
@@ -62,3 +74,27 @@ int* getTriangleSides(int* triangleSides) {
 	}
 	return triangleSides;
 }
+
+/*
+int* getRectangleSides(int* rectangleSides) {
+	int temp;
+	int j;
+
+	printf_s("Enter the four points of the rectangle: ");
+	for (int i = 0; i < 4; i++)
+	{
+		printf_s("Enter point %dx of the rectangle: ");
+		for(j = 0; j < 2; j++)
+		{
+			scanf_s("%d", &rectangleSides[i][j]);
+		}
+		
+		printf_s("Enter point %dx of the rectangle: ");
+		for (j = 0; j < 2; j++)
+		{
+			scanf_s("%d", &rectangleSides[i][j]);
+		}
+	}
+	return rectangleSides;
+} 
+*/
