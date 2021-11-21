@@ -4,13 +4,15 @@
 
 extern "C" char* analyzeTriangle(int side1, int side2, int side3);
 extern "C" double* analyzeAngles(double* triAngles, int side1, int side2, int side3);
+extern "C" char* analyzeRectangle(int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4);
+extern "C" double* rectCalc(double* rectProp, double width, double length);
 
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
 namespace triangleSolvertests
 {
-	TEST_CLASS(triangleSolvertests)
+	TEST_CLASS(typeOfTriangletests)
 	{
 	public:
 		TEST_METHOD(analyzeTriangle_WrongInput)//checks if a numbers that dont create a triangle are given
@@ -69,12 +71,16 @@ namespace triangleSolvertests
 
 			Assert::AreEqual("Not a triangle.", result);
 		}
+	};
+	TEST_CLASS(analyzeAngletests)
+	{
+	public:
 		TEST_METHOD(analyzeAngles_AngleAFunctionality)// Checks if the angle A ouput is correct
 		{
 			double temp[3];
 			double* result;
 			result = analyzeAngles(temp, 19, 15, 17);
-			
+
 			//Rounding to two decimal places
 			result[0] = round(result[0] * 100) / 100;
 
@@ -99,8 +105,52 @@ namespace triangleSolvertests
 
 			//Rounding to two decimal places
 			result[2] = round(result[2] * 100) / 100;
-			
+
 			Assert::AreEqual(58.6, result[2]);//Checking angle C
+		}
+	};
+	TEST_CLASS(fourPointsFunctionality)
+	{
+	public:
+		TEST_METHOD(analyzeRectangleCorrectPosFunctionality)// Checks if given positive correct input if the output is correct
+		{
+			char* result = analyzeRectangle(2, 4, 4, 2, 5, 7, 7, 5);
+
+			Assert::AreEqual("This rectangle has a perimeter of 8.00 m, and an area of 4.00 m^2.", result);
+		}
+		TEST_METHOD(analyzeRectangleCorrectNegFunctionality)// Checks if given negative correct input if the output is correct
+		{
+			char* result = analyzeRectangle(-2, -4, -4, -2, -5, -7, -7, -5);
+
+			Assert::AreEqual("This rectangle has a perimeter of 8.00 m, and an area of 4.00 m^2.", result);
+		}
+		TEST_METHOD(analyzeRectangleFunctionality)// Checks if given input that does not form a rectangle
+		{
+			char* result = analyzeRectangle(2, 8, 4, 2, 5, 7, 7, 5);
+
+			Assert::AreEqual("This is not a rectangle.", result);
+		}
+		TEST_METHOD(analyzeRectangleIncorrectFunctionality)// Checks if given incorrect input if the output is correct
+		{
+			char* result = analyzeRectangle(2, 'c', 4, 2, 5, 7, 7, 5);
+
+			Assert::AreEqual("This is not a rectangle.", result);
+		}
+		TEST_METHOD(recCalcPerimFunctionality)// Checks if the perimeter output is correct
+		{
+			double temp[2];
+			double* result;
+			result = rectCalc(temp, 2.0, 2.0);
+
+			Assert::AreEqual(8.0, result[0]);
+		}
+		TEST_METHOD(rectCalcAreaFunctionality)// Checks if the area output is correct
+		{
+			double temp[2];
+			double* result;
+			result = rectCalc(temp, 2.0, 2.0);
+
+			Assert::AreEqual(4.0, result[1]);
 		}
 	};
 }

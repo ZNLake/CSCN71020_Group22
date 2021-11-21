@@ -25,13 +25,12 @@ char* analyzeRectangle(int x1, int y1, int x2, int y2, int x3, int y3, int x4, i
 		width = fabs(width);
 
 		rectPropStg = rectCalc(rectProp, length, width);
-		sprintf(result1, "This rectangle has a perimeter of %.2lf m, and an area of %.2lf m.", rectPropStg[0], rectPropStg[1]);
+		sprintf(result1, "This rectangle has a perimeter of %.2lf m, and an area of %.2lf m^2.", rectPropStg[0], rectPropStg[1]);
 		return result1;
 	}
 	else
 	{
-		strcpy(result1, "This is not a rectangle");
-		return result1;
+		return "This is not a rectangle.";
 	}
 }
 
