@@ -6,14 +6,12 @@ extern "C" char* analyzeTriangle(int side1, int side2, int side3);
 extern "C" double* analyzeAngles(double* triAngles, int side1, int side2, int side3);
 extern "C" char* analyzeRectangle(int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4);
 extern "C" double* rectCalc(double* rectProp, double width, double length);
-extern "C" double pointCheck(int x1, int y1, int x2, int y2);
-
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
 namespace triangleSolvertests
 {
-	TEST_CLASS(typeOfTriangleTests)
+	TEST_CLASS(typeOfTriangletests)
 	{
 	public:
 		TEST_METHOD(analyzeTriangle_WrongInput)//checks if a numbers that dont create a triangle are given
@@ -79,35 +77,34 @@ namespace triangleSolvertests
 		TEST_METHOD(analyzeAngles_AngleAFunctionality)// Checks if the angle A ouput is correct
 		{
 			double temp[3];
-			double* result;
-			result = analyzeAngles(temp, 19, 15, 17);
+		
+			analyzeAngles(temp, 19, 15, 17);
 
 			//Rounding to two decimal places
-			result[0] = round(result[0] * 100) / 100;
+			temp[0] = round(temp[0] * 100) / 100;
 
-			Assert::AreEqual(72.54, result[0]);//Checking angle A
+			Assert::AreEqual(72.54, temp[0]);//Checking angle A
 		}
 		TEST_METHOD(analyzeAngles_AngleBFunctionality)// Checks if the angle B ouput is correct
 		{
 			double temp[3];
-			double* result;
-			result = analyzeAngles(temp, 19, 15, 17);
+
+			analyzeAngles(temp, 19, 15, 17);
 
 			//Rounding to two decimal places
-			result[1] = round(result[1] * 100) / 100;
+			temp[1] = round(temp[1] * 100) / 100;
 
-			Assert::AreEqual(48.86, result[1]);//Checking angle B
+			Assert::AreEqual(48.86, temp[1]);//Checking angle B
 		}
 		TEST_METHOD(analyzeAngles_AngleCFunctionality)// Checks if the angle C ouput is correct
 		{
 			double temp[3];
-			double* result;
-			result = analyzeAngles(temp, 19, 15, 17);
+			analyzeAngles(temp, 19, 15, 17);
 
 			//Rounding to two decimal places
-			result[2] = round(result[2] * 100) / 100;
+			temp[2] = round(temp[2] * 100) / 100;
 
-			Assert::AreEqual(58.6, result[2]);//Checking angle C
+			Assert::AreEqual(58.6, temp[2]);//Checking angle C
 		}
 	};
 	TEST_CLASS(fourPointsTests)
@@ -134,7 +131,7 @@ namespace triangleSolvertests
 		TEST_METHOD(analyzeRectangleFunctionality)// Checks if given input that does not form a rectangle
 		{
 			char* result = analyzeRectangle(2, 8, 4, 2, 5, 7, 7, 5);
-
+		
 			Assert::AreEqual("This is not a rectangle.", result);
 		}
 		TEST_METHOD(analyzeRectangleIncorrectFunctionality)// Checks if given incorrect input if the output is correct
